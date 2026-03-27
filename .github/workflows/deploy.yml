@@ -10,11 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout code
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # 2️⃣ Setup Node.js
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: npm install
 
+      # 4️⃣ Run tests
       - name: Run Tests
         run: echo "No tests yet"
+
+      # 5️⃣ Send Email Notification
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASS }}
+          subject: "🚀 Deployment Status"
+          body: |
+            Your application has been successfully deployed!
+
+            ✅ CI/CD Pipeline: Success
+            🚀 Status: Live on Render
+          to: keerthanamahesh.1616@gmail.com
+          from: keerthanamahesh.1616@gmail.com
