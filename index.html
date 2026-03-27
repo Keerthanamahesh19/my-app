@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DevOps Deployment</title>
+  <title>DevOps Dashboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #667eea, #764ba2);
+      font-family: Arial;
+      background: #0f172a;
       color: white;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 50px;
     }
 
-    h1 {
-      font-size: 40px;
-    }
-
-    p {
-      font-size: 20px;
-    }
-
-    .box {
-      background: rgba(255, 255, 255, 0.1);
+    .card {
+      background: #1e293b;
       padding: 30px;
       border-radius: 15px;
       display: inline-block;
+      width: 300px;
+    }
+
+    .status {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .success {
+      color: #22c55e;
+    }
+
+    .time {
+      font-size: 14px;
+      color: #94a3b8;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
+      margin-top: 15px;
+      padding: 10px;
       border: none;
       border-radius: 8px;
-      background: white;
-      color: #333;
       cursor: pointer;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background: #ddd;
     }
   </style>
 </head>
 
 <body>
-  <div class="box">
-    <h1>🚀 Automated Deployment System</h1>
-    <p>Successfully deployed using CI/CD Pipeline</p>
-    <p>Docker + GitHub Actions + Render</p>
 
-    <button onclick="showMessage()">Check Status</button>
+  <h1>🚀 DevOps Deployment Dashboard</h1>
+
+  <div class="card">
+    <div class="status success">✅ Deployment Successful</div>
+    <div class="time" id="time"></div>
+
+    <button onclick="refresh()">🔄 Refresh</button>
   </div>
 
   <script>
-    function showMessage() {
-      alert("✅ Deployment Successful!");
+    function updateTime() {
+      document.getElementById("time").innerText =
+        "Last Updated: " + new Date().toLocaleString();
     }
+
+    function refresh() {
+      location.reload();
+    }
+
+    updateTime();
   </script>
+
 </body>
 </html>
